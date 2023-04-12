@@ -36,13 +36,18 @@ Resources:
         Properties:
             Description: ''
             FunctionName: backend-lambda-py-test
+            Code:
+                ZipFile: |
+                    import json
+                    def lambda_handler(event, context):
+                        # Your code here
+                        return {
+                            'statusCode': 200,
+                            'body': json.dumps('Hello from Lambda!')
+                    }
             Handler: lambda_function.lambda_handler
             Architectures:
                 - x86_64
-            Code:
-                S3Bucket: 'prod-iad-c1-djusa-tasks'
-                S3Key: !Sub '/snapshots/${AWS::AccountId}/backend-lambda-py-8ddaa0ca-b277-4222-b8e1-448bf6b9be6d'
-                S3ObjectVersion: 'eVfkr8XtyyZKf6WVdFfbCQd6NBM1ZNMG'
             MemorySize: 128
             Role: !Sub 'arn:aws:iam::${AWS::AccountId}:role/backend-role'
             Runtime: python3.9
@@ -57,13 +62,18 @@ Resources:
         Properties:
             Description: ''
             FunctionName: subscribe-user-test
+            Code:
+                ZipFile: |
+                    import json
+                    def lambda_handler(event, context):
+                        # Your code here
+                        return {
+                            'statusCode': 200,
+                            'body': json.dumps('Hello from Lambda!')
+                    }
             Handler: lambda_function.lambda_handler
             Architectures:
                 - x86_64
-            Code:
-                S3Bucket: 'prod-iad-c1-djusa-tasks'
-                S3Key: !Sub '/snapshots/${AWS::AccountId}/subscribe-user-243c28d8-2668-43a7-abc1-f5485514c2d9'
-                S3ObjectVersion: 'Ex2.GOiobed2bYC1fShNmb5d5inxbigw'
             MemorySize: 128
             Role: !Sub 'arn:aws:iam::${AWS::AccountId}:role/backend-role'
             Runtime: python3.9
