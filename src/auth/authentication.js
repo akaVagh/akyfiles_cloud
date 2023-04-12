@@ -4,7 +4,6 @@ import {
 	CognitoUserPool,
 } from 'amazon-cognito-identity-js';
 import { userPool } from './config';
-import { validateToken } from './validateToken';
 import { useNavigate } from 'react-router-dom';
 
 export const signUp = (email, name, password, navigate) => {
@@ -101,19 +100,6 @@ export const getUserAttributes = () => {
 			console.error('Error getting user data:', error.message);
 			return null;
 		});
-};
-
-export const checkToken = async () => {
-	const token = sessionStorage.getItem('access_token');
-	if (token) {
-		try {
-			const isValid = await validateToken(token);
-			return isValid;
-		} catch (error) {
-			console.error('Error validating token:', error);
-		}
-	}
-	return false;
 };
 
 export const getToken = () => {

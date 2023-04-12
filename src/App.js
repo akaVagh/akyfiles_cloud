@@ -12,10 +12,6 @@ import { getToken } from './auth/authentication';
 import Files from './components/Files/Files';
 
 function App() {
-	const [isValidating] = useIsValidating();
-	if (isValidating) {
-		return <div>Validating...</div>;
-	}
 	return (
 		<div>
 			<BrowserRouter>
