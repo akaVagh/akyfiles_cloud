@@ -1,0 +1,231 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	text-align: justify;
+	padding: 1rem;
+}
+
+.fileUploadContainer {
+	margin: 0 0 15px;
+	border: 2px dotted lightgray;
+	padding: 100px 250px;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+}
+
+.formField {
+	font-size: 18px;
+	display: block;
+	width: 100%;
+	border: none;
+	text-transform: none;
+	opacity: 0;
+}
+
+.inputLabel {
+	color: black;
+}
+.label {
+	font-weight: bold;
+	font-size: large;
+	display: block;
+	text-align: center;
+}
+.message {
+	color: green;
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+.dragDropText {
+	font-weight: bold;
+	letter-spacing: 2.2px;
+	margin-top: 0;
+	text-align: center;
+	font-size: initial;
+}
+
+.uploadFileBtn {
+	box-sizing: border-box;
+	appearance: none;
+	background-color: transparent;
+	border: 2px solid #3498db;
+	cursor: pointer;
+	font-size: 1rem;
+	line-height: 1;
+	padding: 1.1em 2.8em;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+	border-radius: 6px;
+	color: #3498db;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	transition: color 250ms ease-in-out;
+	font-family: 'Open Sans', sans-serif;
+	width: 45%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.uploadFileBtn:hover {
+	color: #fff;
+	outline: 0;
+	background: #3498db;
+}
+
+.uploadFileBtn:focus {
+	outline: 0;
+	background: transparent;
+}
+
+.uploadFileBtn:disabled {
+	opacity: 0.4;
+	filter: grayscale(100%);
+	pointer-events: none;
+	cursor: not-allowed;
+}
+
+.filePreviewContainer {
+	margin-bottom: 35px;
+	max-height: 400px;
+	overflow: auto;
+	width: 60%;
+}
+
+.previewList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.previewContainer {
+	padding: 0.25rem;
+	height: 120px;
+	border-radius: 6px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.previewContainer:hover .fileMetaData {
+	display: flex;
+}
+
+.previewContainer > div:first-of-type {
+	height: 100%;
+	position: relative;
+}
+
+.imagePreview {
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.fileMetaData {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 10px;
+	border-radius: 6px;
+	color: white;
+	font-weight: bold;
+	background-color: rgba(5, 5, 5, 0.55);
+}
+
+.fileMetaData aside {
+	margin-top: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.addBtn {
+	margin-left: 1rem;
+}
+
+.removeFileIcon {
+	cursor: pointer;
+	color: #ff0000;
+}
+
+.removeFileIcon:hover {
+	transform: scale(1.3);
+}
+
+.uploadButton {
+	position: relative;
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 10px 2px;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background-color 250ms ease-in-out;
+}
+
+.uploadButton:hover {
+	background-color: #2e7032;
+}
+
+.uploadButton:disabled {
+	opacity: 0.4;
+	filter: grayscale(100%);
+	pointer-events: none;
+	cursor: not-allowed;
+}
+
+@media only screen and (max-width: 750px) {
+	.previewContainer {
+		width: calc(33.333% - 10px);
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.previewContainer {
+		width: calc(50% - 10px);
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.previewContainer {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.uploadFileBtn {
+		width: 70%;
+	}
+}
+
+@media only screen and (max-width: 350px) {
+	.uploadFileBtn {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.previewList {
+		flex-direction: column;
+	}
+}

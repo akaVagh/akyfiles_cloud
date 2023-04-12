@@ -1,0 +1,103 @@
+/* Define the colors */
+:root {
+	--primary-color: #3f51b5;
+	--secondary-color: #f1f3f4;
+	--text-color: #777;
+}
+
+/* Set the base styles for the file table */
+.fileTable {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 16px;
+	padding: 16px;
+	transition: grid-template-columns 0.2s ease-in-out;
+}
+
+/* Define the styles for each file card */
+.fileCard {
+	background-color: var(--secondary-color);
+	border-radius: 8px;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transition: box-shadow 0.3s ease-in-out;
+}
+
+.fileCard:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+/* Define the styles for the file icon */
+.fileIcon {
+	font-size: 48px;
+	color: var(--primary-color);
+}
+
+/* Define the styles for the file name and details */
+.fileInfo {
+	text-align: center;
+	margin-top: 8px;
+}
+
+.fileName {
+	font-weight: bold;
+	color: var(--primary-color);
+}
+
+.fileDetails {
+	font-size: 0.9em;
+	color: var(--text-color);
+}
+
+/* Define the styles for the file actions */
+.fileActions {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 8px;
+}
+
+.actionButton {
+	background: none;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: var(--primary-color);
+	transition: color 0.2s ease-in-out;
+}
+
+.actionButton:hover {
+	color: darken(var(--primary-color), 10%);
+}
+
+/* Define the styles for the modal preview */
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.previewImage {
+	max-width: 90%;
+	max-height: 90%;
+	object-fit: contain;
+	border-radius: 8px;
+}
+
+/* Apply responsive styles for small screens */
+@media screen and (max-width: 480px) {
+	.fileTable {
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	}
+}
