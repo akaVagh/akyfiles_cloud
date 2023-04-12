@@ -38,11 +38,14 @@ export const signIn = (email, password, navigate) => {
 		user.authenticateUser(authDetails, {
 			onSuccess: async (result) => {
 				const accessToken = result.getAccessToken().getJwtToken();
-				localStorage.setItem('access_token', accessToken);
+				sessionStorage.setItem('access_token', accessToken);
 				const currentUser = getCurrentUser();
 				if (currentUser) {
 					const userData = await getUserAttributes();
-					localStorage.setItem('user_data', JSON.stringify(userData));
+					sessionStorage.setItem(
+						'user_data',
+						JSON.stringify(userData)
+					);
 				}
 				resolve(result);
 				navigate('/home');
@@ -59,7 +62,7 @@ export const signOut = () => {
 	const user = userPool.getCurrentUser();
 	if (user) {
 		user.signOut();
-		localStorage.removeItem('access_token');
+		sessionStorage.removeItem('access_token');
 		window.location.reload();
 	}
 };
@@ -101,7 +104,7 @@ export const getUserAttributes = () => {
 };
 
 export const checkToken = async () => {
-	const token = localStorage.getItem('access_token');
+	const token = sessionStorage.getItem('access_token');
 	if (token) {
 		try {
 			const isValid = await validateToken(token);
@@ -114,6 +117,6 @@ export const checkToken = async () => {
 };
 
 export const getToken = () => {
-	const token = localStorage.getItem('access_token');
+	const token = sessionStorage.getItem('access_token');
 	return token;
 };

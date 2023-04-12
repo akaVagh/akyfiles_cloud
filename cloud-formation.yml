@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'Cloud formation to set project up'
+Resources:
+    EC2Instance:
+        Type: 'AWS::EC2::Instance'
+        Properties:
+            ImageId: ami-007855ac798b5175e
+            InstanceType: t2.micro
+            KeyName: cloud-harshvaghani
+            AvailabilityZone: !Sub '${AWS::Region}b'
+            Tenancy: default
+            SubnetId: subnet-0311a65bee5f51947
+            EbsOptimized: false
+            SecurityGroupIds:
+                - sg-031e42b4e05866f00
+            SourceDestCheck: true
+            BlockDeviceMappings:
+                - DeviceName: /dev/sda1
+                  Ebs:
+                      Encrypted: false
+                      VolumeSize: 8
+                      SnapshotId: snap-02eb3fc532839ce94
+                      VolumeType: gp2
+                      DeleteOnTermination: true
+            IamInstanceProfile: admin-role
+            Tags:
+                - Key: Name
+                  Value: skyfiles-cloud
+            HibernationOptions:
+                Configured: false
+            EnclaveOptions:
+                Enabled: false
+
+    LambdaFunction:
+        Type: 'AWS::Lambda::Function'
+        Properties:
+            Description: ''
+            FunctionName: backend-lambda-py-test
+            Handler: lambda_function.lambda_handler
+            Architectures:
+                - x86_64
+            Code:
+                S3Bucket: 'prod-iad-c1-djusa-tasks'
+                S3Key: !Sub '/snapshots/${AWS::AccountId}/backend-lambda-py-8ddaa0ca-b277-4222-b8e1-448bf6b9be6d'
+                S3ObjectVersion: 'eVfkr8XtyyZKf6WVdFfbCQd6NBM1ZNMG'
+            MemorySize: 128
+            Role: !Sub 'arn:aws:iam::${AWS::AccountId}:role/backend-role'
+            Runtime: python3.9
+            Timeout: 3
+            TracingConfig:
+                Mode: PassThrough
+            EphemeralStorage:
+                Size: 512
+
+    LambdaFunction2:
+        Type: 'AWS::Lambda::Function'
+        Properties:
+            Description: ''
+            FunctionName: subscribe-user-test
+            Handler: lambda_function.lambda_handler
+            Architectures:
+                - x86_64
+            Code:
+                S3Bucket: 'prod-iad-c1-djusa-tasks'
+                S3Key: !Sub '/snapshots/${AWS::AccountId}/subscribe-user-243c28d8-2668-43a7-abc1-f5485514c2d9'
+                S3ObjectVersion: 'Ex2.GOiobed2bYC1fShNmb5d5inxbigw'
+            MemorySize: 128
+            Role: !Sub 'arn:aws:iam::${AWS::AccountId}:role/backend-role'
+            Runtime: python3.9
+            Timeout: 3
+            TracingConfig:
+                Mode: PassThrough
+            EphemeralStorage:
+                Size: 512
+
+    ApiGatewayRestApi:
+        Type: 'AWS::ApiGateway::RestApi'
+        Properties:
+            Name: backend-imguplaod-gateway-test
+            Description: 'API Gateway that will handle backend api calls'
+            ApiKeySourceType: HEADER
+            EndpointConfiguration:
+                Types:
+                    - REGIONAL
+
+    SNSTopic:
+        Type: 'AWS::SNS::Topic'
+        Properties:
+            DisplayName: Skyfiles-test
+            TopicName: sky-files-uploaded-test
+
+    S3B2IV1E:
+        Type: 'AWS::S3::Bucket'
+        Properties:
+            BucketName: 's3-skyfiles-test'
+
+    CUP277MZ:
+        Type: 'AWS::Cognito::UserPool'
+        Properties:
+            UserPoolName: 'skyfiles-users-test'
+            Schema:
+                - Name: email
+                  AttributeDataType: String
+                  Mutable: true
+                  Required: true
+            AutoVerifiedAttributes:
+                - email
+            LambdaConfig:
+                PostConfirmation: !GetAtt LambdaFunction2.Arn
+
+Outputs:
+    UserPoolId:
+        Description: The ID of the created Cognito User Pool
+        Value: !Ref CUP277MZ
+        Export:
+            Name: UserPoolId
+
+    S3BucketName:
+        Description: The name of the created S3 bucket
+        Value: !Ref S3B2IV1E
+        Export:
+            Name: S3BucketName

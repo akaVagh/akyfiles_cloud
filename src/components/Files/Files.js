@@ -7,7 +7,7 @@ import FileTable from '../FileTable/FileTable';
 const Files = () => {
 	const [files, setFiles] = useState([]);
 
-	const userData = localStorage.getItem('user_data');
+	const userData = sessionStorage.getItem('user_data');
 	const folder_name = JSON.parse(userData).name;
 
 	const getApi =
