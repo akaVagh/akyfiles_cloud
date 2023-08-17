@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+# Skyfiles
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Skyfiles Photo Cloud application will consist of a React web application hosted on an AWS EC2 instance. This frontend application will allow users to upload and view their photos, which will be stored in an AWS S3 bucket. The application will use AWS Lambda functions for serverless processing of image uploads and other tasks, such as generating email notifications or sharing the photos.
 
-## Available Scripts
+AWS API Gateway will be utilized to create secure and efficient API endpoints for the React application to communicate with the Lambda functions and S3 storage. AWS Cognito will be integrated for user authentication and access control, ensuring that only authorized users can upload and view their photos.
+Additionally, the application will leverage AWS SNS to send notifications to users when specific events occur, such as successful image uploads or when new photos are available for viewing.
+Key Features:
+1. User authentication and authorization with AWS Cognito
+2. Image upload and storage in AWS S3
+3. Serverless backend processing with AWS Lambda
+4. Secure API endpoints using AWS API Gateway
+5. Notifications using AWS SNS
 
-In the project directory, you can run:
+## Cloud Architecture
 
-### `npm start`
+![Architrcture](ProjectArc.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The architecture of the web application includes a distributed architecture in frontend, serverless backend and database. The frontend is built using a React web application which is hosted on an AWS EC2 instance. The API Gateway handles the API calls made from the frontend to serve the user. The API Gateway together with Lambda function creates the serverless backend for this application. The application uses S3 bucket to store images and SNS service to send notifications to the user.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
