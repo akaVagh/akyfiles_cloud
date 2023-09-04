@@ -1,9 +1,8 @@
 # Skyfiles
 
-The Skyfiles Photo Cloud application will consist of a React web application hosted on an AWS EC2 instance. This frontend application will allow users to upload and view their photos, which will be stored in an AWS S3 bucket. The application will use AWS Lambda functions for serverless processing of image uploads and other tasks, such as generating email notifications or sharing the photos.
+The Skyfiles Photo Cloud application consists of a React web application hosted on an AWS EC2 instance. This frontend application allows users to upload and view their photos, which are stored in an AWS S3 bucket. The application uses AWS Lambda functions for serverless processing of image uploads and other tasks, such as generating email notifications or sharing photos.
 
-AWS API Gateway will be utilized to create secure and efficient API endpoints for the React application to communicate with the Lambda functions and S3 storage. AWS Cognito will be integrated for user authentication and access control, ensuring that only authorized users can upload and view their photos.
-Additionally, the application will leverage AWS SNS to send notifications to users when specific events occur, such as successful image uploads or when new photos are available for viewing.
+AWS API Gateway is utilized to create secure and efficient API endpoints for the React application to communicate with the Lambda functions and S3 storage. AWS Cognito is integrated for user authentication and access control, ensuring that only authorized users can upload and view their photos. Additionally, the application leverages AWS SNS to send notifications to users when specific events occur, such as successful image uploads or when new photos are available for viewing.
 Key Features:
 1. User authentication and authorization with AWS Cognito
 2. Image upload and storage in AWS S3
